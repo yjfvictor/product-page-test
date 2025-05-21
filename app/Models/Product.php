@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductDiscounts;
+use App\Models\ProductImages;
+
+class Product extends Model
+{
+    use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'description',
+        'slug',
+        'price',
+        'active',
+    ];
+
+    public function discount()
+    {
+	    return $this->hasOne(ProductDiscounts::class);
+    }
+
+    public function images()
+    {
+	    return $this->hasMany(ProductImages::class);
+    }
+}
